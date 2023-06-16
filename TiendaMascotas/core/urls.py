@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import base
+from .views import index,misdatos
 
 
 urlpatterns = [
-    path('', base, name="base"),
+    path('', index, name="index"),
+    path('misdatos', misdatos, name='misdatos'),
 ]
     # path('poblar_bd', poblar_bd, name="poblar_bd"),
     # path('vehiculo/<action>/<id>', vehiculo, name="vehiculo"),
