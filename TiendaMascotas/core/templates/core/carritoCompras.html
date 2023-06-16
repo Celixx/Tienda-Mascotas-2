@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carrito de Compras </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+  <div id="navbar">
+
+  </div>
+
+  <!-- Tabla -->
+  <div class="container-fluid m-3">
+    <h2 class="fs-1">
+        Carrito de compras
+      </h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-light">
+          <th>Categoría</th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>% Subscriptor</th>
+          <th>% Oferta</th>
+          <th>% Desc Total</th>
+          <th>Descuento</th>
+          <th>Precio a Pagar</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Perros</td>
+          <td>Saco Royal Canin 3kg</td>
+          <td>$8.000</td>
+          <td>5%</td>
+          <td>5%</td>
+          <td>10%</td>
+          <td>800</td>
+          <td>$7.200</td>
+          <td>Eliminar</td>
+
+        </tr>
+        <tr class="table-light">
+          <td>Perros</td>
+          <td>Hueso gris 3kg</td>
+          <td>$2000</td>
+          <td>0%</td>
+          <td>0%</td>
+          <td>0%</td>
+          <td>0</td>
+          <td>$2000</td>
+          <td>Eliminar</td>
+        </tr>
+        <tr>
+          <td>Gatos</td>
+          <td>Raton de juguete</td>
+          <td>$3000</td>
+          <td>25%</td>
+          <td>0%</td>
+          <td>25%</td>
+          <td>750</td>
+          <td>$2.250</td>
+          <td>Eliminar</td>
+        </tr>
+        <tr class="table-light">
+          <td>Gatos</td>
+          <td>Pescado juguete</td>
+          <td>$5000</td>
+          <td>0%</td>
+          <td>10%</td>
+          <td>10%</td>
+          <td>500</td>
+          <td>$4.500</td>
+          <td>Eliminar</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+
+  <!-- Form -->
+  <div class="d-flex justify-content-end p-5">
+    <form>
+      <div class="d-flex mb-3">
+        <label for="exampleInputEmail1" class="form-label">Precio sin IVA</label>
+        <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="readonly input"
+          value="$13.403" disabled>
+      </div>
+      <div class="d-flex mb-3">
+        <label for="exampleInputEmail1" class="form-label">Valor del IVA (19%)</label>
+        <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="readonly input"
+          value="$2.547" disabled>
+      </div>
+      <div class="d-flex mb-3">
+        <label for="exampleInputEmail1" class="form-label">Total a pagar</label>
+        <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="emailHelp"
+          value="$15.950" disabled>
+      </div>
+      <div class="d-flex gap-4">
+        <button type="submit" class="btn btn-primary">Cancelar compra</button>
+        <button type="submit" class="btn btn-primary">Pagar</button>
+    </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+  integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+  crossorigin="anonymous"></script>
+  <!-- Mis scripts -->
+  <script src="JS/carga_elementos.js"></script>
+</body>
+
+
+</html>

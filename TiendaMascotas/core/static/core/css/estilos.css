@@ -1,0 +1,50 @@
+body{
+    padding: 15px;
+}
+
+.logo {
+    float: left;
+    font-size: 20px;
+}
+
+.menu-superior{
+    float: right;
+    text-align: right;
+}
+
+.menu-superior li {
+    display: inline;
+    margin-right: 20px;
+    
+}
+
+.container {
+    position: relative;
+    height: 600px; 
+    
+}
+
+.my-div {
+     
+    position: absolute ;
+    bottom: 0 ;
+    left: 0;
+    width: 200px;
+    height: 100px;
+    border: 2px dotted blue;
+    padding: 10px;
+}
+
+.sale-real-price {
+    text-decoration: line-through;
+}
+
+.precio{
+    font-weight: 600;
+    font-size: 45px;
+}
+
+.descripcion{
+    font-weight: 500;
+}
+

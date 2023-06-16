@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mantenedor de Bodega</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <style>
+        .error {
+            font-size: 14px;
+            font-weight: bold;         
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- NavBar -->
+    <div id="navbar">
+
+    </div>
+
+    <!-- Form -->
+    <div class="m-3">
+        <h2>Mantenedor de Bodega</h2>
+        <div class="d-flex">
+            <form class="w-100" id="formulario">
+                <!-- Categoria -->
+                <div class="mb-3">
+                    <div class="d-flex gap-4">
+                        <p>Categoría</p>
+                        <select class="form-select" aria-label="Default select example">
+                            <option value="1">Perros</option>
+                            <option value="2">Gatos</option>
+                            <option value="3">Aves</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Nombre elemento -->
+                <div class="mb-3">
+                    <div class="d-flex gap-4">
+                        <p>Nombre</p>
+                        <select class="form-select" aria-label="Default select example">
+                            <option value="1">saco de alimento Royal Canin</option>
+                            <option value="2">saco de alimento Taste of the Wild</option>
+                            <option value="3">saco de alimento Acana</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Cantidad elemento -->
+                <div class="mb-3">
+                    <div class="d-flex gap-4 col-sm-3">
+                        <label for="InputCant" class="form-label">Cantidad</label>
+                        <input type="text" class="form-control" id="InputCant" name="InputCant">
+                    </div>
+                </div>
+                <!-- Botones -->
+                <div class="d-flex gap-4">
+                    <button type="submit" class="btn btn-primary">Nuevo</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+            <!-- Imagen Elemento -->
+            <div>
+                <img src="IMG/question_mark.png" alt="Signo de Interrogación" class="img-thumbnail" style="width: 25%;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+
+    <div class="m-3">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>27</td>
+                    <td>Perros</td>
+                    <td>Saco alimento Royal Canin</td>
+                    <td>Vendido</td>
+                    <td>
+                        <a href="">Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>Gatos</td>
+                    <td>Saco alimento Don Cuchito</td>
+                    <td>En bodega</td>
+                    <td>
+                        <a href="">Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>Perros</td>
+                    <td>Saco alimento Royal Canin</td>
+                    <td>Entregado</td>
+                    <td>
+                        <a href="">Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>Gatos</td>
+                    <td>Saco alimento Don Cuchito</td>
+                    <td>Despachado</td>
+                    <td>
+                        <a href="">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JQuery Validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+    <!-- Mis scripts -->
+    <script src="JS/carga_elementos.js"></script>
+    <script src="JS/valida_mantenedor_prod.js"></script>
+</body>
+
+</html>

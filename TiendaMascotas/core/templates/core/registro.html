@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .error {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class=" d-flex flex-column vh-100">
+    
+    <!-- Navbar -->
+    <div id="navbar">
+
+    </div>
+    <div class="container-fluid justify-content-center ">
+        <form id="formulario1" class="container  justify-content-center vh-100 ">
+            <div class="container text-center">
+                <h1>Registro</h1>
+            </div>
+            <div class="">
+                <ul class="MenuDatos col-12 d-flex  ">
+                    <div class="">
+                        <div class="row-cols-1">
+                            <div class="form-group d-flex flex-fill justify-content-center align-items-center ">
+                                <label for="InputRut"
+                                    class="col-sm-7 control-label d-flex flex-fill align-items-center p-3">Rut</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control " id="InputRut" name="InputRut" placeholder="12.345.678-k"
+                                        style="width: 120px" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-fill justify-content-center align-items-center">
+                            <label for="InputNombres"
+                                class="col-sm-7 control-label d-flex flex-fill  align-items-center p-3">Nombres</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="InputNombre" name="InputNombre" placeholder="Ana"
+                                    style="width: 320px" />
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-fill justify-content-center align-items-center">
+                            <label for="InputApellidos"
+                                class="col-sm-7 control-label d-flex flex-fill align-items-center p-3">Apellidos</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="InputApellidos" name="InputApellidos" placeholder="Torres"
+                                    style="width: 320px" />
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-fill justify-content-center align-items-center">
+                            <label for="InputCorreo"
+                                class="col-sm-5 control-label d-flex flex-fill  align-items-center p-3">Correo</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="InputCorreo" name="InputCorreo" placeholder="atorres@duocuc.cl"
+                                    style="width: 320px" />
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-fill justify-content-center align-items-center">
+                            <label for="InputDireccion" class=" d-flex flex-fill align-items-center p-3">Dirección</label>
+                            <div class="col-sm-10">
+                                <textarea type="text" class="form-control" id="InputDireccion" name="InputDireccion" placeholder="la monea 201"
+                                    style="width: 320px"></textarea>
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-fill justify-content-center align-items-center">
+                            <div class="col-12">
+                                <label for="suscripcion" style="width: 320px">Con suscripción</label>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox"
+                                        class="form-check-input d-flex flex-fill justify-content-center align-items-center"
+                                        id="exampleCheck1">
+                                    <label
+                                        class="form-check-label d-flex flex-fill justify-content-center align-items-center"
+                                        for="exampleCheck1" style="width: 320px">Deseo suscribirme con un aporte de
+                                        $3000
+                                        mensuales y obtener un 5% de descuento en mis compras</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-fill justify-content-center align-items-center">
+                            <label for="InputContraseña"
+                                class=" d-flex flex-fill align-items-center p-3">Contraseña</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="InputContraseña" name="InputContraseña" placeholder="*********"
+                                    style="width: 320px" />
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-fill justify-content-center align-items-center">
+                            <label for="InputContraseña2" class=" d-flex flex-fill align-items-center p-3">Confirmar <br>
+                                contraseña</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="InputContraseña2" name="InputContraseña2"
+                                    placeholder="*********" style="width: 320px" />
+                            </div>
+                        </div>
+                        <!-------------------------------------BOTON DE INGRESO------------------------------>
+                        <div class="container-fluid p-2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="align-content-md-between">
+                                        <button type="submit" class="btn btn-secondary btn-sm">Guardar</button>
+                                        <button type="reset" class="btn btn-secondary btn-sm">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-------------------------------------IMAGEN A LA DERECHA------------------------------>
+                    <div class=" mt-3 col-1 d-flex flex-column justify-content-center" style="width: 320px">
+                        <label for="imageUpload" class="form-label">Seleccione imagen:</label>
+                        <input type="file" class="form-control" id="imageUpload" name="imageUpload">
+                        
+                    </div>
+            </div>
+            </ul>
+        </form>
+    </div>
+    
+    <!-------------------------------------FOOTER------------------------------>
+    <div id="footer">
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous">
+    </script>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JQuery Validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Mi script -->
+    <script src="JS/valida_registro.js"></script>
+    <script src="JS/carga_elementos.js"></script>
+</body>
+
+</html>
