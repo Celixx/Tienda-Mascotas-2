@@ -1,9 +1,6 @@
 #Custom additions
 TiendaMascotas_venv
-TiendaMascotas/__pycache__/
-apirest/__pycache__/
-core/__pycache__/
-
+*.pyc
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
