@@ -1,6 +1,6 @@
 #Custom additions
 TiendaMascotas_venv
-*.pyc
+*.cpython-311.pyc
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
