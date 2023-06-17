@@ -38,6 +38,9 @@ def Mantenedor_de_Productos(request):
 
 def Mantenedor_de_Bodega(request):
     return render(request, 'core/Mantenedor_de_Bodega.html')
+
+def carritoCompras(request):
+    return render(request, 'core/carritoCompras.html')
 # Create your views here.
 
 
