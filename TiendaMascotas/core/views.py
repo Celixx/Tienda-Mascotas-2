@@ -15,4 +15,10 @@ def comprasAnteriores(request):
 def ingreso(request):
     return render(request, 'core/ingreso.html')
 
+def admsTienda(request):
+    return render(request, 'core/admsTienda.html')
+
+def registro(request):
+    return render(request, 'core/registro.html')
+
 # Create your views here.
