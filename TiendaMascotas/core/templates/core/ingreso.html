@@ -40,12 +40,12 @@
                         <button class="btn btn-primary" type="submit">Ingresar</button>
                     </div>
                     <div class="container-fluid d-flex justify-content-around p-2">
-                        <a href="registro.html" class=" ">Registrarse</a>
-                        <a href="registro.html" class="">Olvide mi contraseña</a>
+                        <a href="{% url 'registro' %}" class=" ">Registrarse</a>
+                        <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
                     </div>
-                        <a href="clienteview.html" class=" d-flex p-3 col-12">Presiona aquí para simular que ingresaste
+                        <a href="{% url 'index' %}" class=" d-flex p-3 col-12">Presiona aquí para simular que ingresaste
                             como "Cliente"</a>
-                        <a href="menuAdmin.html" class="p-3 col-12">Presiona aquí para simular que ingresaste como
+                        <a href="{% url 'menuAdmin' %}" class="p-3 col-12">Presiona aquí para simular que ingresaste como
                             "Administrador"</a>
                 </ul>
             </div>

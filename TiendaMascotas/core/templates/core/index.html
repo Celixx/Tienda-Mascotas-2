@@ -48,7 +48,7 @@
     <div class="container">
         <div class="row">
             <div class="col p-5">
-                <a href="royalCanin.html" class="shadow d-flex flex-column align-items-center nav-link">
+                <a href="{% url 'royalCanin' %}" class="shadow d-flex flex-column align-items-center nav-link">
                     <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
                     <p class="p-3 text-success"> Disponible</br>
                         <span class="fs-4">$8.000</span></br>
@@ -59,7 +59,7 @@
                 </a>
             </div>
             <div class="col p-5">
-                <a href="masterCat.html" class="shadow d-flex flex-column align-items-center nav-link">
+                <a href="{% url 'masterCat' %}" class="shadow d-flex flex-column align-items-center nav-link">
                     <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
                     <p class="p-3 text-primary"> EN OFERTA</br>
                         <span class="text-decoration-line-through">$8000</span><span class="fs-4">$6.000 </span><br />
@@ -71,7 +71,7 @@
                 </a>
             </div>
             <div class="col p-5">
-                <a href="donCuchito.html" class="shadow d-flex flex-column align-items-center nav-link">
+                <a href="{% url 'donCuchito' %}" class="shadow d-flex flex-column align-items-center nav-link">
                     <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
                     <p class="p-3 text-danger"> Disponible</br>
                         <span class="fs-4">$3.000</span></br>
@@ -86,7 +86,7 @@
     <div class="container  ">
         <div class="row-cols-1">
             <div class="col">
-                <a href="API de ropa.html" class="d-flex">
+                <a href="{% url 'API_Ropa' %}" class="d-flex">
                     <!-- Imagen relacionada con la canción -->
                     <img width="130px" src="{% static 'core/images/download.jpg' %}" alt="" />
                     <!-- Producto -->
