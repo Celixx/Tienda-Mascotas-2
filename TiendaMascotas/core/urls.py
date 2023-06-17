@@ -2,6 +2,7 @@ from django.urls import path
 from .views import index,misdatos, nosotros, comprasAnteriores, ingreso, admsTienda, registro, royalCanin, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index
 
 
+
 urlpatterns = [
     path('', index, name="index"),
     path('misdatos', misdatos, name='misdatos'),
@@ -22,6 +23,7 @@ urlpatterns = [
     path('donCuchito', donCuchito, name='donCuchito'),
     path('API_Ropa', API_Ropa, name='API_Ropa'),
     path('index', index, name='index'),
+    
 ]
 
 
