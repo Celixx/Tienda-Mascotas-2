@@ -41,8 +41,28 @@ def Mantenedor_de_Bodega(request):
 
 def carritoCompras(request):
     return render(request, 'core/carritoCompras.html')
+
+def Historial_Ventas(request):
+    return render(request, 'core/Historial_Ventas.html')
+
+def Detalle_Boleta(request):
+    return render(request, 'core/Detalle_Boleta.html')
+
+def donCuchito(request):
+    return render(request, 'core/donCuchito.html')
+
+def donCuchito(request):
+    return render(request, 'core/donCuchito.html')
+
+def API_Ropa(request):
+    return render(request, 'core/API_Ropa.html')
+
+def index(request):
+    return render(request, 'core/index.html')
+
 # Create your views here.
 
 
 
 
+    
