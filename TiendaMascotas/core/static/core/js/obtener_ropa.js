@@ -6,7 +6,7 @@ $(document).ready(function(){
                 
                 var elemento = `
                     <div class="col-sm-12 col-md-4 col-lg-3">
-                        <a style="height: 650px;" class="overflow-hidden p-3 shadow nav-link" href="royalCanin.html">
+                        <a style="height: 650px;" class="overflow-hidden p-3 shadow nav-link" href="{% url 'royalCanin' %}">
                             <div>
                                 <img src="${item.image}" class="img-fluid" style="height: 200px;" alt="Imagen producto">
                                 <p class="p-3"> $${item.price} </p>
