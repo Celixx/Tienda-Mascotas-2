@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import UserForm
 
 def index(request):
     return render(request, 'core/index.html')
@@ -60,7 +61,28 @@ def API_Ropa(request):
 def index(request):
     return render(request, 'core/index.html')
 
+
+
+def registro(request):
+    if request.method == 'POST':
+        form = registro(request.POST)
+        if form.is_valid():
+            # Save the form data to the database
+            form.save()
+            return render(request, 'success.html')
+    else:
+        form = UserForm()
+
+    return render(request, 'user_form.html', {'form': form})
+HTML
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 # Create your views here.
+
 
 
 
