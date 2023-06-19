@@ -12,7 +12,7 @@
     <link href="{% static 'core/css/style.css' %}" rel="stylesheet" />
 
     {% block stylesheet %}
-      
+
     {% endblock stylesheet %}
     
 </head>
@@ -39,7 +39,7 @@
                     <a class="nav-link text-light" href="{% url 'ingreso' %}">Ingresar</a>
                 </li>
                 <li>
-                    <a class="nav-link text-light" href="{% url 'ingreso' %}">Cerrar Sesión</a>
+                    <a class="nav-link text-light" href="{% url 'salir' %}">Cerrar Sesión</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="{% url 'admsTienda' %}">Administrar</a>

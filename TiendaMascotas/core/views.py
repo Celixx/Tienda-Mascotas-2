@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import UserForm
+from django.contrib.auth import login, logout, authenticate
+from .models import Perfil
+from .forms import IngresarForm
+from django.contrib import messages
+
 
 def index(request):
     return render(request, 'core/index.html')
@@ -14,7 +19,23 @@ def comprasAnteriores(request):
     return render(request, 'core/comprasAnteriores.html')
 
 def ingreso(request):
-    return render(request, 'core/ingreso.html')
+
+    if request.method == "POST":
+        form = IngresarForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect(index)
+            messages.error(request, 'La cuenta o la password no son correctos')
+    
+    return render(request, "core/ingreso.html", {
+        'form':  IngresarForm(),
+        'perfiles': Perfil.objects.all(),
+    })
 
 def admsTienda(request):
     return render(request, 'core/admsTienda.html')
@@ -61,6 +82,9 @@ def API_Ropa(request):
 def index(request):
     return render(request, 'core/index.html')
 
+def salir(request):
+    logout(request)
+    return redirect(index)
 
 
 # def registro(request):

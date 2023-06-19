@@ -14,27 +14,18 @@
 {% block content %}
     
     <!--------------------------------INICIO DE INFO DEL USUARIO------------------------------->
-    <div class="d-flex flex-fill justify-content-center align-items-center">
-        <form id="formulario2">
-            <div class="container text-center p-4">
-                <h1>Ingreso a la tienda</h1>
-            </div>
-            <div class="d-flex justify-content-center">
-                <ul class="menu col-10">
-                    <div class="form-group p-2">
-                        <label for="InputCorreo" class="col-sm-5 control-label">Correo Electronico</label>
-                        <div class="col-sm-10 p-1">
-                            <input type="text" class="form-control" id="InputCorreo" name="InputCorreo"
-                                placeholder="name@example.com" style="width: 320px" />
-                        </div>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="InputClave" class="form-label">Contraseña</label>
-                        <input type="password" id="InputClave" name="InputClave" class="form-control"
-                            aria-labelledby="passwordHelpBlock" style="width: 321px">
-                        <div id="passwordHelpBlock" class="form-text">
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4 border border-3 p-4">
+                <div class="container text-center p-4">
+                    <h1>Ingreso a la tienda</h1>
+                </div>
+            
+            <form method="POST" id="form">
+
+                {% csrf_token %} 
+                {{ form.as_p }}
+                
                     <!-------------------------------------BOTON DE INGRESO------------------------------>
                     <div class="d-grid gap-4 col-5 mx-auto p-2">
                         <button class="btn btn-primary" type="submit">Ingresar</button>
@@ -47,9 +38,9 @@
                             como "Cliente"</a>
                         <a href="{% url 'menuAdmin' %}" class="p-3 col-12">Presiona aquí para simular que ingresaste como
                             "Administrador"</a>
-                </ul>
+
             </div>
-        </form>
+        </div>
     </div>
     
 {% endblock content %}
