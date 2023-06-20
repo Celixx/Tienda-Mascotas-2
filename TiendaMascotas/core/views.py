@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
 from .models import Perfil
-from .forms import IngresarForm
+from .forms import IngresarForm,RegistrarForm
 from django.contrib import messages
 
 
@@ -41,7 +41,7 @@ def admsTienda(request):
     return render(request, 'core/admsTienda.html')
 
 def registro(request):
-    return render(request, 'core/registro.html')
+    return render(request, 'core/registro.html', {'form': RegistrarForm()})
 
 def royalCanin(request):
     return render(request, 'core/royalCanin.html')

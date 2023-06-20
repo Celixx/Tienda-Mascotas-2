@@ -17,13 +17,15 @@
     
 <div class="container-fluid justify-content-center ">
     <form id="formulario1" class="container  justify-content-center vh-100 " method="post" >
-        
-        {% csfr_token %}
-        {{form}}
-        
         <div class="container text-center">
             <h1>Registro</h1>
         </div>
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+
+
         <div class="">
             <ul class="MenuDatos col-12 d-flex  ">
                 <div class="">
