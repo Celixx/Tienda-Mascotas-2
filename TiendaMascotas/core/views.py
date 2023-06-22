@@ -41,6 +41,24 @@ def admsTienda(request):
     return render(request, 'core/admsTienda.html')
 
 def registro(request):
+
+    form = RegistrarForm()
+    if request.method == 'POST':
+        form = RegistrarForm(request.POST, request.FILES)
+        if form.is_valid():
+            print('is valid')
+            user = form.save()
+            rut = form.cleaned_data['rut']
+            direccion = form.cleaned_data['direccion']
+            subscrito = form.cleaned_data['subscrito']
+            Perfil.objects.create(
+                usuario=user, 
+                tipo_usuario='Cliente', 
+                rut=rut, 
+                direccion=direccion, 
+                subscrito=subscrito,
+                imagen=request.FILES['imagen'])
+            return redirect(ingreso)
     return render(request, 'core/registro.html', {'form': RegistrarForm()})
 
 def royalCanin(request):

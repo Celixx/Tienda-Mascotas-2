@@ -24,16 +24,27 @@ class IngresarForm(Form):
     class Meta:
         fields = ['username', 'password']
 
-class RegistrarForm(Form):
+class RegistrarForm(UserCreationForm):
     rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=True, )
+    username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=True)
     nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre", required=True)
     apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=True)
     correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=True)
     direccion = forms.CharField(widget=forms.TextInput(attrs=form_text_area), label="Dirección", required=True)
     subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
-    contraseña1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=False)
-    contraseña2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar Contraseña", required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=False)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar Contraseña", required=False)
     imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
 
     class Meta:
-        fields = ['rut', 'nombre', 'apellido', 'correo', 'direccion', 'subscrito', 'contraseña1', 'contraseña2', 'imagen']
+        model = User
+        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update(form_control)
+        self.fields['nombre'].widget.attrs.update(form_control)
+        self.fields['apellido'].widget.attrs.update(form_control)
+        self.fields['correo'].widget.attrs.update(form_control)
+        self.fields['password1'].widget.attrs.update(form_control)
+        self.fields['password2'].widget.attrs.update(form_control)

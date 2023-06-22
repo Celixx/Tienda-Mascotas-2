@@ -126,7 +126,7 @@ class Carrito(models.Model):
         ordering = ['cliente', 'producto']
 
     def __str__(self):
-        return f'{self.id} Carrito de {self.cliente.usuario.first_name} {self.cliente.usuario.last_name} (Producto {self.producto.categoria.nombre} - {self.producto.nombre} - {formatear_dinero(self.precio)})'
+        return f'{self.id} Carrito de {self.cliente.usuario.first_name} {self.cliente.usuario.last_name} (Producto {self.producto.categoria.nombre} - {self.producto.nombre} - {(self.precio)})'
     
     def acciones():
         return {
@@ -157,7 +157,7 @@ class Boleta(models.Model):
         verbose_name_plural = "Boletas"
 
     def __str__(self):
-        return f'Boleta {self.nro_boleta} de {self.cliente.usuario.first_name} {self.cliente.usuario.last_name} por {formatear_dinero(self.total_a_pagar)}'
+        return f'Boleta {self.nro_boleta} de {self.cliente.usuario.first_name} {self.cliente.usuario.last_name} por {(self.total_a_pagar)}'
     
     def acciones():
         return {
@@ -220,7 +220,7 @@ class DetalleBoleta(models.Model):
     def __str__(self):
         minimo_id = DetalleBoleta.objects.filter(boleta_id=self.boleta.nro_boleta).aggregate(minimo_id=Min('id'))['minimo_id']
         nro_item = self.id - minimo_id + 1
-        return f'Boleta {self.boleta.nro_boleta} Item {nro_item} {self.bodega.producto.nombre} - {formatear_dinero(self.precio_a_pagar)}'
+        return f'Boleta {self.boleta.nro_boleta} Item {nro_item} {self.bodega.producto.nombre} - {(self.precio_a_pagar)}'
     
     def acciones():
         return {
