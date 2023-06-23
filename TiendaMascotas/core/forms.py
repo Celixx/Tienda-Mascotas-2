@@ -25,26 +25,35 @@ class IngresarForm(Form):
         fields = ['username', 'password']
 
 class RegistrarForm(UserCreationForm):
-    rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=True, )
-    username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=True)
-    nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre", required=True)
-    apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=True)
-    correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=True)
-    direccion = forms.CharField(widget=forms.TextInput(attrs=form_text_area), label="Dirección", required=True)
+    rut = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '18.408.449-K', 'class': 'form-control'}), label="Rut", max_length=15, required=True, )
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'agustin', 'class': 'form-control'}), label="Username", required=True)
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Agustín', 'class': 'form-control'}), label="Nombre", required=True)
+    apellido = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'González', 'class': 'form-control'}), label="Apellido", required=True)
+    correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'agustingonzalezmurua@gmail.com', 'class': 'form-control'}), label="Correo", required=True)
+    direccion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Hierbas Buenas 377', 'class': 'form-control'}), label="Dirección", required=True)
     subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=False)
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar Contraseña", required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '********', 'class': 'form-control'}), label="Contraseña", required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '********', 'class': 'form-control'}), label="Confirmar Contraseña", required=True)
     imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
 
     class Meta:
         model = User
         fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update(form_control)
-        self.fields['nombre'].widget.attrs.update(form_control)
-        self.fields['apellido'].widget.attrs.update(form_control)
-        self.fields['correo'].widget.attrs.update(form_control)
-        self.fields['password1'].widget.attrs.update(form_control)
-        self.fields['password2'].widget.attrs.update(form_control)
+class MisDatosForm(UserCreationForm):
+    rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=True, )
+    username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=True)
+    nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre", required=True)
+    apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=True)
+    correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=True)
+    direccion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Dirección", required=True)
+    subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar Contraseña", required=True)
+    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
+
+    class Meta:
+        model = User
+        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
+    
+    

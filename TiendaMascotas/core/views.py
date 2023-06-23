@@ -2,15 +2,34 @@ from django.shortcuts import render, redirect
 from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
 from .models import Perfil
-from .forms import IngresarForm,RegistrarForm
+from .forms import IngresarForm,RegistrarForm, MisDatosForm
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 def index(request):
     return render(request, 'core/index.html')
 
 def misdatos(request):
-    return render(request, 'core/misdatos.html')
+    perfil = request.user.perfil
+    if request.method == "POST":
+        print(perfil)
+        form = MisDatosForm(request.POST, request.FILES)
+        print(form.errors)
+        perfil = request.user.perfil
+        perfil.rut = form.cleaned_data['rut']
+        perfil.direccion = form.cleaned_data['direccion']
+        perfil.subscrito = form.cleaned_data['subscrito']
+        perfil.imagen = request.FILES['imagen']
+        print(perfil)
+        perfil.save()
+        return render(request, 'core/misdatos.html', {'form': MisDatosForm(instance=perfil)})
+
+    perfil = request.user.perfil
+    # user_profile = User.objects.get(user=request.user)
+    # print(user_profile)
+    # form = RegistrarForm(instance=user_profile)
+    return render(request, 'core/misdatos.html', {'form': MisDatosForm(instance=perfil)})
 
 def nosotros(request):
     return render(request, 'core/nosotros.html')
@@ -46,7 +65,6 @@ def registro(request):
     if request.method == 'POST':
         form = RegistrarForm(request.POST, request.FILES)
         if form.is_valid():
-            print('is valid')
             user = form.save()
             rut = form.cleaned_data['rut']
             direccion = form.cleaned_data['direccion']
@@ -102,32 +120,4 @@ def index(request):
 
 def salir(request):
     logout(request)
-    return redirect(index)
-
-
-# def registro(request):
-    
-#     if request.method == 'POST':
-#         form = registro(request.POST)
-#         if form.is_valid():
-#             # Save the form data to the database
-#             form.save()
-#             return render(request, 'success.html')
-#     else:
-#         form = UserForm()
-
-#     return render(request, 'user_form.html', {'form': form})
-# HTML
-
-# <form method="post">
-#     {% csrf_token %}
-#     {{ form.as_p }}
-#     <button type="submit">Submit</button>
-# </form>
-# # Create your views here.
-
-
-
-
-
-    
+    return redirect(index)    

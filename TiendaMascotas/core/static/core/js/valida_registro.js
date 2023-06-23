@@ -34,64 +34,79 @@ $(document).ready(function() {
         return dv === lastChar;
       }, "Por favor ingrese un RUT válido."); 
 
+    
+});
+
+$(document).ready(function() {
     $('#formulario1').validate({
         rules: {
-            InputRut: {
+            rut: {
                 required: true,
                 rutChileno: true
             },
-            InputNombre: {
+            username: {
                 required: true
             },
-            InputApellidos: {
+            nombre: {
                 required: true
             },
-            InputCorreo: {
+            apellido: {
+                required: true
+            },
+            correo: {
                 required: true,
                 email: true
             },
-            InputDireccion: {
+            direccion: {
                 required: true,
             },
-            InputContraseña: {
+            subscrito: {
+                required: false,
+            },
+            password1: {
                 required: true,
                 minlength: 5
             },
-            InputContraseña2: {
+            password2: {
                 required: true,
-                equalTo: "#InputContraseña"
-            }
+                equalTo: "#id_password1"
+            },
+            imagen: {
+                required: true,
+            },
         },
         messages: {
-            InputRut: {
+            rut: {
                 required: "El RUT es un campo obligatorio",
                 rutChnileno: "El formato del rut es incorrecto"
             },
-            InputNombre: {
+            username: {
+                required: "El username es un campo obligatorio"
+            },
+            nombre: {
                 required: "El nombre es un campo obligatorio"
             },
-            InputApellidos: {
-                required: "Los apellidos son un campo obligatorio"
+            apellido: {
+                required: "El apellido es un campo obligatorio"
             },
-            InputCorreo: {
+            correo: {
                 required: "El correo es un campo obligatorio",
                 email: "El correo no cumple con el formato de un correo"
             },
-            InputDireccion: {
+            direccion: {
                 required: "La dirección es un campo obligatorio"
             },
-            InputContraseña: {
+            password1: {
                 required: "La contraseña es un campo obligatorio",
                 minlength: "La longitud mínima es de 5 caracteres"
             },
-            InputContraseña2: {
+            password2: {
                 required: "Verificar la contraseña es obligatorio",
                 equalTo: "Las contraseñas no coinciden"
-            }
+            },
         }
     });
 });
-
 
 $(document).ready(function() {
     $('#formulario2').validate({
