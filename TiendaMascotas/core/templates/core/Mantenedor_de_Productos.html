@@ -21,10 +21,13 @@
     
     
 <div class="m-3">
-    <h2>Mantenedor de Productos</h2>
     <div class="d-flex">
-        <form id="formulario3" class="w-100">
-            <!-- ID -->
+        <form id="formulario3" class="container  justify-content-center vh-100" enctype="multipart/form-data"  method="post">
+            <h2>Mantenedor de Productos</h2>
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            {% comment %} <!-- ID -->
             <div class="mb-3">
                 <div class="d-flex gap-4">
                     <label for="InputId" class="form-label">ID</label>
@@ -102,68 +105,59 @@
                         <input type="text" class="form-control" id="InputDscOferta" name="InputDscOferta">
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
             <!-- Botones -->
             <div class="d-flex gap-4">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <button type="submit" class="btn btn-primary">Nuevo</button>
                 <button type="reset" class="btn btn-primary">Eliminar</button>
             </div>
+
+            <div class="m-3">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">% Desc Subscriptor</th>
+                            <th scope="col">% Desc Oferta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>27</td>
+                            <td>Perros</td>
+                            <td>Saco alimento Royal Canin</td>
+                            <td>Saco Royal Canin de 3 Kilos</td>
+                            <td>$8.000</td>
+                            <td>5%</td>
+                            <td>2%</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>Gato</td>
+                            <td>Saco alimento Don Cuchito</td>
+                            <td>Saco alimento Don Cuchito de 1 Kilo</td>
+                            <td>$2.000</td>
+                            <td>5%</td>
+                            <td>2%</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>Perros</td>
+                            <td>Saco alimento Royal Canin</td>
+                            <td>Saco Royal Canin de 3 Kilos</td>
+                            <td>$8.000</td>
+                            <td>5%</td>
+                            <td>2%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </form>
-        <!-- Imagen Elemento -->
-        <div>
-            <img src="{% static 'core/images/question_mark.png' %}" alt="Signo de Interrogación" class="img-thumbnail" style="width: 25%;">
-            <button type="submit" class="btn btn-primary">Examinar</button>
-        </div>
-    </div>
-    <div>
-
-    <!-- Tabla -->
-
-        <div class="m-3">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">% Desc Subscriptor</th>
-                        <th scope="col">% Desc Oferta</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>27</td>
-                        <td>Perros</td>
-                        <td>Saco alimento Royal Canin</td>
-                        <td>Saco Royal Canin de 3 Kilos</td>
-                        <td>$8.000</td>
-                        <td>5%</td>
-                        <td>2%</td>
-                    </tr>
-                    <tr>
-                        <td>28</td>
-                        <td>Gato</td>
-                        <td>Saco alimento Don Cuchito</td>
-                        <td>Saco alimento Don Cuchito de 1 Kilo</td>
-                        <td>$2.000</td>
-                        <td>5%</td>
-                        <td>2%</td>
-                    </tr>
-                    <tr>
-                        <td>29</td>
-                        <td>Perros</td>
-                        <td>Saco alimento Royal Canin</td>
-                        <td>Saco Royal Canin de 3 Kilos</td>
-                        <td>$8.000</td>
-                        <td>5%</td>
-                        <td>2%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
     

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
 from .models import Perfil
-from .forms import IngresarForm,RegistrarForm, MisDatosForm
+from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -92,7 +92,7 @@ def Mantenedor_de_usuarios(request):
     return render(request, 'core/Mantenedor_de_usuarios.html')
 
 def Mantenedor_de_Productos(request):
-    return render(request, 'core/Mantenedor_de_Productos.html')
+    return render(request, 'core/Mantenedor_de_Productos.html', {'form': MantenedorProducto()})
 
 def Mantenedor_de_Bodega(request):
     return render(request, 'core/Mantenedor_de_Bodega.html')

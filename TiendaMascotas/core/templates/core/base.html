@@ -30,7 +30,7 @@
                     <a class="nav-link text-light" href="{% url 'nosotros' %}">Nosotros</a>
                 </li>
 
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and not user.is_superuser %}
 
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{% url 'misdatos' %}">Mis Datos</a>
@@ -47,6 +47,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-light" href="{% url 'admsTienda' %}">Administrar</a>
                 </li>
+                <li>
+                    <a class="nav-link text-light" href="{% url 'salir' %}">Cerrar Sesión</a>
+                </li>  
 
                 {% endif %}
 
@@ -61,12 +64,12 @@
 
                 {% endif %}
 
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and not user.is_superuser%}
                     <li>
                         <a class="nav-link text-light" href="{% url 'carritoCompras' %}">
                             <div class="d-flex">
                                 <p>2</p>
-                                <img src="{% static 'core/images/shopping-cart.svg' %}" style="width: 30px; height: 30px;" alt="carrito de compras">
+                                <img src="{% static 'core/images/shopping_cart.png' %}" style="width: 30px; height: 30px;" alt="carrito de compras">
                             </div>
                         </a>
                     </li>
