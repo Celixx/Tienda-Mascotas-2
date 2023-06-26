@@ -57,15 +57,15 @@ class MisDatosForm(UserCreationForm):
         fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
     
 class MantenedorProducto(Form):
-    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID", required=True, )
+    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID", required=False, )
     categoria_choices = Categoria.objects.all().values_list('id', 'nombre')
-    categoria = forms.ChoiceField(choices=categoria_choices, widget=forms.Select(attrs={'class': 'form_control'}), label="Categoría", required=True)
-    nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre Producto", required=True)
-    descripcion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Descripción", required=True)
-    precio = forms.IntegerField(widget=forms.TextInput(attrs=form_control), label="Precio", required=True)
-    descuento_subscriptor = forms.IntegerField(widget=forms.TextInput(attrs=form_control), label="Descuento subscriptor", required=True)
-    descuento_oferta = forms.IntegerField(widget=forms.TextInput(attrs=form_control), label="Descuento por oferta", required=True)
-    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
+    categoria = forms.ChoiceField(choices=categoria_choices, widget=forms.Select(attrs={'class': 'form_control'}), label="Categoría", required=False)
+    nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre Producto", required=False)
+    descripcion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Descripción", required=False)
+    precio = forms.IntegerField(widget=forms.TextInput(attrs=form_control), label="Precio", required=False)
+    descuento_subscriptor = forms.IntegerField(widget=forms.TextInput(attrs=form_control), label="Descuento subscriptor", required=False)
+    descuento_oferta = forms.IntegerField(widget=forms.TextInput(attrs=form_control), label="Descuento por oferta", required=False)
+    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=False)
 
     class Meta:
         model = User
