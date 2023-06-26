@@ -21,8 +21,8 @@
     
     
 <div class="m-3">
-    <div class="d-flex">
-        <form id="formulario3" class="container  justify-content-center vh-100" enctype="multipart/form-data"  method="post">
+    <div class="d-flex-column justify-content-center ">
+        <form id="formulario3" class="container  justify-content-center" enctype="multipart/form-data"  method="post" action="{% url 'Mantenedor_de_Productos' %}">
             <h2>Mantenedor de Productos</h2>
             {% csrf_token %}
             {{ form.as_p }}
@@ -108,15 +108,20 @@
             </div> {% endcomment %}
             <!-- Botones -->
             <div class="d-flex gap-4">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="submit" class="btn btn-primary">Nuevo</button>
-                <button type="reset" class="btn btn-primary">Eliminar</button>
+                <button type="submit" class="btn btn-primary" name="action" value="guardar" >Guardar</button>
+                <button type="submit" class="btn btn-primary" name="action" value="nuevo">Nuevo</button>
+                <button type="submit" class="btn btn-primary" name="action" value="eliminar">Eliminar</button>
             </div>
             
             {% comment %} Tabla {% endcomment %}
 
-            <div class="m-3">
-                <table class="table table-bordered table-hover">
+            
+        </form>
+
+        {% if productos %}
+
+            <div class=" m-3">
+                <table class="container justify-content-center  table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -126,10 +131,23 @@
                             <th scope="col">Precio</th>
                             <th scope="col">% Desc Subscriptor</th>
                             <th scope="col">% Desc Oferta</th>
+                            <th scope="col">% Imágen</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+
+                        {% for producto in productos %}
+                            <tr>
+                                <td> {{ producto.id }} </td>
+                                <td> {{ producto.categoria }} </td>
+                                <td> {{ producto.nombre }} </td>
+                                <td> {{ producto.descripcion }} </td>
+                                <td> {{ producto.precio }} </td>
+                                <td> {{ producto.descuento_subscriptor }} </td>
+                                <td> {{ producto.descuento_oferta }} </td>
+                                <td> <img src="/media/{{ producto.imagen }}" class="img-thumbnail" width="75px" height="75px" alt=""> </td>
+                            </tr>
+                        {% comment %} <tr>
                             <td>27</td>
                             <td>Perros</td>
                             <td>Saco alimento Royal Canin</td>
@@ -155,11 +173,14 @@
                             <td>$8.000</td>
                             <td>5%</td>
                             <td>2%</td>
-                        </tr>
+                        </tr> {% endcomment %}
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
-        </form>
+
+        {% endif %}
+
     </div>
 </div>
     

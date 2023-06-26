@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
-from .models import Perfil
+from .models import Perfil, Categoria, Producto
 from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -92,7 +92,65 @@ def Mantenedor_de_usuarios(request):
     return render(request, 'core/Mantenedor_de_usuarios.html', {'form': MantenedorUsuario()})
 
 def Mantenedor_de_Productos(request):
-    return render(request, 'core/Mantenedor_de_Productos.html', {'form': MantenedorProducto()})
+        if request.method == 'POST':
+            form = MantenedorProducto(request.POST, request.FILES)
+            if form.is_valid():
+                action = request.POST.get('action')
+                if action == 'nuevo':
+                    id_categoria = form.cleaned_data['categoria']
+                    categoria = Categoria.objects.get(id=id_categoria)
+                    nombre = form.cleaned_data['nombre']
+                    descripcion = form.cleaned_data['descripcion']
+                    precio = form.cleaned_data['precio']
+                    descuento_subscriptor = form.cleaned_data['descuento_subscriptor']
+                    descuento_oferta = form.cleaned_data['descuento_oferta']
+                    imagen = request.FILES['imagen']
+                    Producto.objects.create(
+                        categoria = categoria,
+                        nombre = nombre,
+                        descripcion= descripcion,
+                        precio = precio,
+                        descuento_subscriptor = descuento_subscriptor,
+                        descuento_oferta = descuento_oferta,
+                        imagen = imagen
+                     )
+                    productos = Producto.objects.all()
+                    datos = {'form': MantenedorProducto(), 'productos': productos}
+                    return render(request, 'core/Mantenedor_de_Productos.html', datos)
+                elif action == 'eliminar':
+                    id = form.cleaned_data['id']
+                    producto = Producto.objects.get(id=id)
+                    producto.delete()
+                    productos = Producto.objects.all()
+                    datos = {'form': MantenedorProducto(), 'productos': productos}
+                    return render(request, 'core/Mantenedor_de_Productos.html', datos)
+                elif action == 'guardar':
+                    id = form.cleaned_data['id']
+                    id_categoria = form.cleaned_data['categoria']
+                    categoria = Categoria.objects.get(id=id_categoria)
+                    nombre = form.cleaned_data['nombre']
+                    descripcion = form.cleaned_data['descripcion']
+                    precio = form.cleaned_data['precio']
+                    descuento_subscriptor = form.cleaned_data['descuento_subscriptor']
+                    descuento_oferta = form.cleaned_data['descuento_oferta']
+                    imagen = request.FILES['imagen']
+
+                    producto = producto = Producto.objects.get(id=id)
+
+                    producto.nombre = nombre
+                    producto.categoria = categoria
+                    producto.descripcion = descripcion
+                    producto.precio = precio
+                    producto.descuento_subscriptor = descuento_subscriptor
+                    producto.descuento_oferta = descuento_oferta
+                    producto.imagen = imagen
+                    producto.save()
+                    productos = Producto.objects.all()
+                    datos = {'form': MantenedorProducto(), 'productos': productos}
+                    return render(request, 'core/Mantenedor_de_Productos.html', datos)
+        productos = Producto.objects.all()
+        datos = {'form': MantenedorProducto(), 'productos': productos}
+        return render(request, 'core/Mantenedor_de_Productos.html', datos)
 
 def Mantenedor_de_Bodega(request):
     return render(request, 'core/Mantenedor_de_Bodega.html')
