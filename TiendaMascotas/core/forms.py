@@ -91,3 +91,15 @@ class MantenedorUsuario(Form):
     class Meta:
         model = User
         fields = ['rut', 'rol', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'imagen']
+
+
+class MantenedorBodega(Form):
+    categoria_choices = Categoria.objects.all().values_list('id', 'nombre')
+    categoria = forms.ChoiceField(choices=categoria_choices, widget=forms.Select(attrs={'class': 'form_control'}), label="Categoría", required=True)
+    nombre_choices = Categoria.objects.all().values_list('id', 'nombre')
+    nombre = forms.ChoiceField(choices=nombre_choices, widget=forms.Select(attrs={'class': 'form_control'}), label="Nombre", required=True)
+    cantidad = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Cantidad", required=True)
+    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
+    class Meta:
+        model = User
+        fields = ['categoria', 'nombre','cantidad','imagen']   

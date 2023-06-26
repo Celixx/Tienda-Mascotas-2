@@ -16,47 +16,21 @@
     
 <div class="m-3">
     <h2>Mantenedor de Bodega</h2>
-    <div class="d-flex">
+
+    <div class="row col-3 p-4">
+        
         <form class="w-100" id="formulario" method="post">
-            <!-- Categoria -->
-            <div class="mb-3">
-                <div class="d-flex gap-4">
-                    <p>Categoría</p>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="1">Perros</option>
-                        <option value="2">Gatos</option>
-                        <option value="3">Aves</option>
-                    </select>
-                </div>
-            </div>
-            <!-- Nombre elemento -->
-            <div class="mb-3">
-                <div class="d-flex gap-4">
-                    <p>Nombre</p>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="1">saco de alimento Royal Canin</option>
-                        <option value="2">saco de alimento Taste of the Wild</option>
-                        <option value="3">saco de alimento Acana</option>
-                    </select>
-                </div>
-            </div>
-            <!-- Cantidad elemento -->
-            <div class="mb-3">
-                <div class="d-flex gap-4 col-sm-3">
-                    <label for="InputCant" class="form-label">Cantidad</label>
-                    <input type="text" class="form-control" id="InputCant" name="InputCant">
-                </div>
-            </div>
+            
+            {% csrf_token %} 
+            {{ form.as_p }}
+            
             <!-- Botones -->
             <div class="d-flex gap-4">
                 <button type="submit" class="btn btn-primary">Nuevo</button>
                 <button type="submit" class="btn btn-primary">Agregar</button>
             </div>
         </form>
-        <!-- Imagen Elemento -->
-        <div>
-            <img src="{% static 'core/images/question_mark.png' %}" alt="Signo de Interrogación" class="img-thumbnail" style="width: 25%;">
-        </div>
+
     </div>
 </div>
 
