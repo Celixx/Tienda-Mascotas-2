@@ -71,23 +71,25 @@ class MantenedorProducto(Form):
         model = User
         fields = ['id', 'categoria', 'nombre','descripcion', 'precio', 'descuento_subscriptor', 'descuento_oferta', 'imagen']
     
-class MantenedorUsuario(Form):
+class MantenedorUsuario(UserCreationForm):
 
     roles_choices = [
         ('cliente', 'Cliente'),
         ('administrador', 'Administrador'),
     ]
-    rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=True)
-    rol = forms.ChoiceField(choices=roles_choices, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}), label='Tipo de usuario')
-    username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=True)
-    nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre", required=True)
-    apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=True)
-    correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=True)
-    direccion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Dirección", required=True)
+    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID", required=False, )
+    rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=False)
+    rol = forms.ChoiceField(choices=roles_choices, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}), label='Tipo de usuario', required=False)
+    username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=False)
+    nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre", required=False)
+    apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=False)
+    correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=False)
+    direccion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Dirección", required=False)
     subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=True)
-    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=False)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar contraseña", required=False)
+    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=False)
 
     class Meta:
         model = User
-        fields = ['rut', 'rol', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'imagen']
+        fields = ['id', 'rut', 'rol', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']

@@ -17,8 +17,8 @@
         <!-- Form -->
         <div class="m-3">
             
-            <div class="d-flex">
-                <form id="formulario1" class="container  justify-content-center vh-100" enctype="multipart/form-data"  method="post">
+            <div class="d-flex-column justify-content-center">
+                <form id="formulario1" class="container  justify-content-center" enctype="multipart/form-data"  method="post" action="{% url 'Mantenedor_de_usuarios' %}">
                     <h2>Mantenedor de Usuarios</h2>
 
                     {% csrf_token %}
@@ -106,15 +106,16 @@
                     </div> {% endcomment %}
                     <!-- Botones -->
                     <div class="d-flex gap-4">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                        <button type="submit" class="btn btn-primary">Nuevo</button>
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
-                    </div>
-                    
-                    {% comment %} Tabla {% endcomment %}
-                    
+                        <button type="submit" class="btn btn-primary" name="action" value="guardar" >Actualizar</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="nuevo">Crear Usuario</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="eliminar">Eliminar</button>
+                    </div>       
+                </form>
+
+                {% if usuarios %}
+
                     <div class="m-3">
-                        <table class="table table-bordered table-hover">
+                        <table class="container justify-content-center table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -129,44 +130,50 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                {% for usuario in usuarios %}
                                 <tr>
-                                    <td>34</td>
-                                    <td>Cliente</td>
-                                    <td>9.455.847-K</td>
-                                    <td>Juan</td>
-                                    <td>Pérez</td>
-                                    <td>jperez@gmail.com</td>
-                                    <td>San Juan Bautista 423</td>
-                                    <td>Sí</td>
-                                    <td></td>
+                                    <td>
+                                        {{ usuario.id }}
+                                    </td>
+                                    <td>
+                                        {{ usuario.perfil.tipo_usuario }}
+                                    </td>
+                                    <td>
+                                        {{ usuario.perfil.rut }}
+                                    </td>
+                                    <td>
+                                        {{ usuario.first_name }}
+                                    </td>
+                                    <td>
+                                        {{ usuario.last_name }}
+                                    </td>
+                                    <td>
+                                        {{ usuario.email }}
+                                    </td>
+                                    <td>
+                                        {{ usuario.perfil.direccion }}
+                                    </td>
+                                    {% if usuario.perfil.subscrito %}
+                                        <td>
+                                            <p>Si</p>
+                                        </td>
+                                    {% else %}
+                                        <td>
+                                            <p>No</p>
+                                        </td>
+                                    {% endif %}
+                                    <td>
+                                        <img src="/media/{{ usuario.perfil.imagen }}" class="img-thumbnail" width="75px" height="75px" alt="">
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>35</td>
-                                    <td>Administrador</td>
-                                    <td>13.345.678-9</td>
-                                    <td>Ana</td>
-                                    <td>Torres</td>
-                                    <td>atorres@gmail.com</td>
-                                    <td>San Juan Bautista 423</td>
-                                    <td>No</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>36</td>
-                                    <td>Cliente</td>
-                                    <td>26.846.927-K</td>
-                                    <td>Pedro</td>
-                                    <td>González</td>
-                                    <td>pgonzalez@gmail.com</td>
-                                    <td>San Juan Bautista 423</td>
-                                    <td>No</td>
-                                    <td></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    
-                </form>
+                
+                {% endif %}
+
             </div>
         </div>
     
