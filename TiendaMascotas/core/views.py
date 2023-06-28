@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
-from .models import Perfil, Categoria, Producto
-from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, MantenedorBodega
+from .models import Perfil, Categoria, Producto, Bodega, DetalleBoleta
+from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm
+from .tools import eliminar_registro, verificar_eliminar_registro
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 
 def index(request):
@@ -153,8 +155,58 @@ def Mantenedor_de_Productos(request):
         return render(request, 'core/Mantenedor_de_Productos.html', datos)
 
 def Mantenedor_de_Bodega(request):
+    if request.method == 'POST':
+        producto_id = request.POST.get('producto')
+        producto = Producto.objects.get(id=producto_id)
+        cantidad = int(request.POST.get('cantidad'))
+        for cantidad in range(1, cantidad + 1):
+            Bodega.objects.create(producto=producto)
+        if cantidad == 1:
+            messages.success(request, f'Se ha agregado 1 nuevo "{producto.nombre}" a la bodega')
+        else:
+            messages.success(request, f'Se han agregado {cantidad} productos de "{producto.nombre}" a la bodega')
+
+    registros = Bodega.objects.all()
+    lista = []
+    for registro in registros:
+        vendido = DetalleBoleta.objects.filter(bodega=registro).exists()
+        item = {
+            'bodega_id': registro.id,
+            'nombre_categoria': registro.producto.categoria.nombre,
+            'nombre_producto': registro.producto.nombre,
+            'estado': 'Vendido' if vendido else 'En bodega',
+            'imagen': registro.producto.imagen,
+        }
+        lista.append(item)
+
+    return render(request, 'core/Mantenedor_de_bodega.html', {
+        'form': BodegaForm(),
+        'productos': lista,
+    })
+
+def obtener_productos(request):
+    categoria_id = request.GET.get('categoria_id')
+    productos = Producto.objects.filter(categoria_id=categoria_id)
+    data = [
+        {
+            'id': producto.id, 
+            'nombre': producto.nombre, 
+            'imagen': producto.imagen.url
+        } for producto in productos
+    ]
+    return JsonResponse(data, safe=False)
+
+def eliminar_producto_en_bodega(request, bodega_id):
     
-    return render(request, 'core/Mantenedor_de_Bodega.html',{'form': MantenedorBodega()})
+    nombre_producto = Bodega.objects.get(id=bodega_id).producto.nombre
+    eliminado, error = verificar_eliminar_registro(Bodega, bodega_id, True)
+    
+    if eliminado:
+        messages.success(request, f'Se ha eliminado el ID {bodega_id} ({nombre_producto}) de la bodega')
+    else:
+        messages.error(request, error)
+
+    return redirect(Mantenedor_de_Bodega)
 
 def carritoCompras(request):
     return render(request, 'core/carritoCompras.html')
@@ -179,4 +231,4 @@ def index(request):
 
 def salir(request):
     logout(request)
-    return redirect(index)    
+    return redirect(index)     
