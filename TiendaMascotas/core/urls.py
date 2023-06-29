@@ -1,9 +1,15 @@
 from django.urls import path
-from .views import index,misdatos, nosotros, comprasAnteriores, ingreso, admsTienda, registro, royalCanin, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index, salir
+from .views import index,misdatos, nosotros,obtener_productos, eliminar_producto_en_bodega, comprasAnteriores, ingreso, admsTienda, registro, royalCanin, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index, salir
 
 
 
 urlpatterns = [
+    #path('eliminar_producto/<pk>', eliminar_producto, name='eliminar_producto'),
+    path('Mantenedor_de_Bodega', Mantenedor_de_Bodega, name='Mantenedor_de_Bodega'),
+    path('obtener_productos', obtener_productos, name='obtener_productos'),
+    path('eliminar_producto_en_bodega/<bodega_id>', eliminar_producto_en_bodega, name='eliminar_producto_en_bodega'),
+
+
     path('', index, name="index"),
     path('misdatos', misdatos, name='misdatos'),
     path('nosotros', nosotros, name='nosotros'),
@@ -16,7 +22,6 @@ urlpatterns = [
     path('masterCat', masterCat, name='masterCat'),
     path('Mantenedor_de_usuarios', Mantenedor_de_usuarios, name='Mantenedor_de_usuarios'),
     path('Mantenedor_de_Productos', Mantenedor_de_Productos, name='Mantenedor_de_Productos'),
-    path('Mantenedor_de_Bodega', Mantenedor_de_Bodega, name='Mantenedor_de_Bodega'),
     path('carritoCompras', carritoCompras, name='carritoCompras'),
     path('Historial_Ventas', Historial_Ventas, name='Historial_Ventas'),
     path('Detalle_Boleta', Detalle_Boleta, name='Detalle_Boleta'),

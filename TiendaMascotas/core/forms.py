@@ -93,3 +93,24 @@ class MantenedorUsuario(UserCreationForm):
     class Meta:
         model = User
         fields = ['id', 'rut', 'rol', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
+
+
+class BodegaForm(forms.Form):
+
+    categoria = forms.ModelChoiceField(
+        queryset=Categoria.objects.all(),
+        widget=forms.Select(attrs=form_select),
+        label='Categoría'
+    )
+    producto = forms.ModelChoiceField(
+        queryset=Producto.objects.none(), 
+        widget=forms.Select(attrs=form_select),
+        label='Producto'
+    )
+    cantidad = forms.IntegerField(
+        widget=forms.NumberInput(attrs=form_control),
+        label='Cantidad'
+    )
+
+    class Meta:
+        fields = '__all__'
