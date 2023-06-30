@@ -88,6 +88,7 @@ def registro(request):
     return render(request, 'core/registro.html', {'form': RegistrarForm()})
 
 def producto(request, id):
+
     producto = Producto.objects.annotate(stock = Count('bodega')).get(id=id)
     
     return render(request, 'core/producto.html', {'producto': producto})
@@ -310,6 +311,11 @@ def salir(request):
     return redirect(index)     
 
 def agregar_producto_al_carrito(request, id):
+    user = request.user
+    if  not user.is_authenticated:
+        return redirect(ingreso)
+    elif user.is_staff or user.is_superuser:
+        return redirect(index)
 
     perfil = request.user.perfil
     producto_obj = Producto.objects.get(id=id)
@@ -344,6 +350,12 @@ def calcular_precios_producto(producto):
     return precio_normal, precio_oferta, precio_subscr, hay_desc_oferta, hay_desc_subscr
 
 def carritoCompras(request):
+
+    user = request.user
+    if  not user.is_authenticated:
+        return redirect(ingreso)
+    elif user.is_staff or user.is_superuser:
+        return redirect(index)    
 
     detalle_carrito = Carrito.objects.filter(cliente=request.user.perfil)
 

@@ -12,8 +12,6 @@
 {% endblock stylesheet %}
 
 {% block content %}
-    
-    <!--------------------------------INICIO DE INFO DEL USUARIO------------------------------->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-4 border border-3 p-4">
@@ -24,9 +22,7 @@
             <form method="POST" id="form">
 
                 {% csrf_token %} 
-                {{ form.as_p }}
-                
-                    <!-------------------------------------BOTON DE INGRESO------------------------------>
+                {{ form.as_p }} 
                     <div class="d-grid gap-4 col-5 mx-auto p-2">
                         <button class="btn btn-primary" type="submit">Ingresar</button>
                     </div>
@@ -34,10 +30,7 @@
                         <a href="{% url 'registro' %}" class=" ">Registrarse</a>
                         <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
                     </div>
-                        <a href="{% url 'index' %}" class=" d-flex p-3 col-12">Presiona aquí para simular que ingresaste
-                            como "Cliente"</a>
-                        <a href="{% url 'menuAdmin' %}" class="p-3 col-12">Presiona aquí para simular que ingresaste como
-                            "Administrador"</a>
+                        
 
             </div>
         </div>
