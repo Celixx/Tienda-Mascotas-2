@@ -11,7 +11,7 @@ from django.db.models import Count
 
 
 def index(request):
-    productos = Producto.objects.all().annotate(stock = Count('bodega'))
+    productos = Producto.objects.all().annotate(stock = Count('bodega'))[:3]
     datos = {'productos': productos}
     return render(request, 'core/index.html', datos)
 
