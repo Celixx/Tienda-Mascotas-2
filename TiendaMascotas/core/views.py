@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
-from .models import Perfil, Categoria, Producto, Bodega, DetalleBoleta
+from .models import Perfil, Categoria, Producto, Bodega, DetalleBoleta, Carrito
 from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm
 from .tools import eliminar_registro, verificar_eliminar_registro
 from django.contrib import messages
@@ -308,3 +308,60 @@ def API_Ropa(request):
 def salir(request):
     logout(request)
     return redirect(index)     
+
+def agregar_producto_al_carrito(request, id):
+
+    perfil = request.user.perfil
+    producto_obj = Producto.objects.get(id=id)
+
+    precio_normal, precio_oferta, precio_subscr, hay_desc_oferta, hay_desc_subscr = calcular_precios_producto(producto_obj)
+
+    precio = producto_obj.precio
+    descuento_subscriptor = producto_obj.descuento_subscriptor if perfil.subscrito else 0
+    descuento_total=producto_obj.descuento_subscriptor + producto_obj.descuento_oferta if perfil.subscrito else producto_obj.descuento_oferta
+    precio_a_pagar = precio_subscr if perfil.subscrito else precio_oferta
+    descuentos = precio - precio_subscr if perfil.subscrito else precio - precio_oferta
+
+    Carrito.objects.create(
+        cliente=perfil,
+        producto=producto_obj,
+        precio=precio,
+        descuento_subscriptor=descuento_subscriptor,
+        descuento_oferta=producto_obj.descuento_oferta,
+        descuento_total=descuento_total,
+        descuentos=descuentos,
+        precio_a_pagar=precio_a_pagar
+    )
+
+    return redirect(producto, id)
+
+def calcular_precios_producto(producto):
+    precio_normal = producto.precio
+    precio_oferta = producto.precio * (100 - producto.descuento_oferta) / 100
+    precio_subscr = producto.precio * (100 - (producto.descuento_oferta + producto.descuento_subscriptor)) / 100
+    hay_desc_oferta = producto.descuento_oferta > 0
+    hay_desc_subscr = producto.descuento_subscriptor > 0
+    return precio_normal, precio_oferta, precio_subscr, hay_desc_oferta, hay_desc_subscr
+
+def carritoCompras(request):
+
+    detalle_carrito = Carrito.objects.filter(cliente=request.user.perfil)
+
+    total_a_pagar = 0
+    for item in detalle_carrito:
+        total_a_pagar += item.precio_a_pagar
+    monto_sin_iva = int(round(total_a_pagar / 1.19))
+    iva = total_a_pagar - monto_sin_iva
+
+    return render(request, 'core/carritoCompras.html', {
+        'detalle_carrito': detalle_carrito,
+        'monto_sin_iva': monto_sin_iva,
+        'iva': iva,
+        'total_a_pagar': total_a_pagar,
+    })
+
+def eliminar_producto_en_carrito(request, carrito_id):
+
+    Carrito.objects.get(id=carrito_id).delete()
+
+    return redirect(carritoCompras)

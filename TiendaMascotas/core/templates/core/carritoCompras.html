@@ -10,100 +10,76 @@
 
 
   <!-- Tabla -->
-  <div class="container-fluid m-3">
-    <h2 class="fs-1">
+  <div class="d-flex-column justify-content-center m-3">
+    <h2 class="fs-1 container justify-content-center">
         Carrito de compras
       </h2>
-    <table class="table table-bordered">
+    <table class="table table-bordered container justify-content-center">
       <thead>
         <tr class="table-light">
-          <th>Categoría</th>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>% Subscriptor</th>
-          <th>% Oferta</th>
-          <th>% Desc Total</th>
-          <th>Descuento</th>
-          <th>Precio a Pagar</th>
-          <th>Opciones</th>
+          <th> ID </th>
+          <th> Categoría </th>
+          <th> Producto </th>
+          <th> Precio </th>
+          <th> % Descto <br> Subscriptor </th>
+          <th> % Descto <br> Oferta </th>
+          <th> % Descto <br> Total </th>
+          <th class="text-end"> Descuentos </th>
+          <th class="text-end"> Precio a pagar </th>
+          <th> Opciones </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Perros</td>
-          <td>Saco Royal Canin 3kg</td>
-          <td>$8.000</td>
-          <td>5%</td>
-          <td>5%</td>
-          <td>10%</td>
-          <td>800</td>
-          <td>$7.200</td>
-          <td>Eliminar</td>
-
-        </tr>
-        <tr class="table-light">
-          <td>Perros</td>
-          <td>Hueso gris 3kg</td>
-          <td>$2000</td>
-          <td>0%</td>
-          <td>0%</td>
-          <td>0%</td>
-          <td>0</td>
-          <td>$2000</td>
-          <td>Eliminar</td>
-        </tr>
-        <tr>
-          <td>Gatos</td>
-          <td>Raton de juguete</td>
-          <td>$3000</td>
-          <td>25%</td>
-          <td>0%</td>
-          <td>25%</td>
-          <td>750</td>
-          <td>$2.250</td>
-          <td>Eliminar</td>
-        </tr>
-        <tr class="table-light">
-          <td>Gatos</td>
-          <td>Pescado juguete</td>
-          <td>$5000</td>
-          <td>0%</td>
-          <td>10%</td>
-          <td>10%</td>
-          <td>500</td>
-          <td>$4.500</td>
-          <td>Eliminar</td>
-        </tr>
-
+        {% for item in detalle_carrito %}
+          <tr>
+            <td> {{ item.id }} </td>
+                    <td> {{ item.producto.categoria.nombre }} </td>
+                    <td> {{ item.producto.nombre }} </td>
+                    <td> {{ item.precio }} </td>
+                    <td> %{{ item.descuento_subscriptor }} </td>
+                    <td> %{{ item.descuento_oferta }} </td>
+                    <td> %{{ item.descuento_total }} </td>
+                    <td class="text-end"> {{ item.descuentos }} </td>
+                    <td class="text-end"> {{ item.precio_a_pagar }} </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'producto.detalle' item.producto.id %}" class="btn btn-sm btn-primary"> Detalle </a> 
+                            <a href="{% url 'eliminar_producto_en_carrito' item.id %}" class="btn btn-sm btn-danger"> Eliminar </a> 
+                        </div>
+                    </td>
+          </tr>
+        {% endfor %}
       </tbody>
 
     </table>
+
+    <div class="d-flex container justify-content-end">
+      <form>
+        <div class="d-flex mb-3">
+          <label for="exampleInputEmail1" class="form-label">Precio sin IVA</label>
+          <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="readonly input"
+            value="${{ monto_sin_iva }}" disabled>
+        </div>
+        <div class="d-flex mb-3">
+          <label for="exampleInputEmail1" class="form-label">Valor del IVA (19%)</label>
+          <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="readonly input"
+            value="${{ iva }}" disabled>
+        </div>
+        <div class="d-flex mb-3">
+          <label for="exampleInputEmail1" class="form-label">Total a pagar</label>
+          <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="emailHelp"
+            value="${{ total_a_pagar }}" disabled>
+        </div>
+        <div class="d-flex gap-4">
+          <button type="submit" class="btn btn-primary">Cancelar compra</button>
+          <button type="submit" class="btn btn-primary">Pagar</button>
+      </div>
+      </form>
+    </div>
   </div>
 
   <!-- Form -->
-  <div class="d-flex justify-content-end p-5">
-    <form>
-      <div class="d-flex mb-3">
-        <label for="exampleInputEmail1" class="form-label">Precio sin IVA</label>
-        <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="readonly input"
-          value="$13.403" disabled>
-      </div>
-      <div class="d-flex mb-3">
-        <label for="exampleInputEmail1" class="form-label">Valor del IVA (19%)</label>
-        <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="readonly input"
-          value="$2.547" disabled>
-      </div>
-      <div class="d-flex mb-3">
-        <label for="exampleInputEmail1" class="form-label">Total a pagar</label>
-        <input type="email" class="form-control text-end" id="exampleInputEmail1" aria-describedby="emailHelp"
-          value="$15.950" disabled>
-      </div>
-      <div class="d-flex gap-4">
-        <button type="submit" class="btn btn-primary">Cancelar compra</button>
-        <button type="submit" class="btn btn-primary">Pagar</button>
-    </div>
-    </form>
-  </div>
+  
     
 {% endblock content %}
 

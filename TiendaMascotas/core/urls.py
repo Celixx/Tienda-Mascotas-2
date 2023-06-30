@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import producto,index,misdatos, nosotros,obtener_productos, eliminar_producto_en_bodega, comprasAnteriores, ingreso, admsTienda, registro, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index, salir
-
+from .views import producto,index,misdatos, nosotros,obtener_productos, eliminar_producto_en_bodega, comprasAnteriores, ingreso, admsTienda, registro, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index, salir, agregar_producto_al_carrito, eliminar_producto_en_carrito
 
 
 urlpatterns = [
@@ -28,6 +27,8 @@ urlpatterns = [
     path('donCuchito', donCuchito, name='donCuchito'),
     path('API_Ropa', API_Ropa, name='API_Ropa'),
     path('salir', salir, name='salir'),
+    path('agregar_producto_al_carrito/<id>', agregar_producto_al_carrito, name='agregar_producto_al_carrito'),
+    path('eliminar_producto_en_carrito/<carrito_id>', eliminar_producto_en_carrito, name='eliminar_producto_en_carrito'),
     
 ]
 
