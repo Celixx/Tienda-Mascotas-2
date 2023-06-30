@@ -24,91 +24,11 @@
                     {% csrf_token %}
                     {{ form.as_p }}
 
-                    {% comment %} <!-- ID -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputId" class="form-label">ID</label>
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" id="InputId" name="InputId" >
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tipo de Usuario -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <p>Tipo de Usuario</p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Cliente
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Administrador
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- R.U.T -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputRut" class="form-label">R.U.T</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" id="InputRut" name="InputRut">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Nombres -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputNombres" class="form-label">Nombres</label>
-                            <input type="text" class="form-control" id="InputNombres" name="InputNombres">
-                        </div>
-                    </div>
-                    <!-- Apellidos -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputApellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="InputApellidos" name="InputApellidos">
-                        </div>
-                    </div>
-                    <!-- Correo -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputCorreo" class="form-label">Correo</label>
-                            <input type="text" class="form-control" id="InputCorreo" name="InputCorreo">
-                        </div>
-                    </div>
-                    <!-- Descripción -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputDireccion" class="form-label">Dirección</label>
-                            <textarea class="form-control" type="text" id="InputDireccion" name="InputDireccion" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <!-- Con Subscripción -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Deseo subscribirme con un aporte de $3000 mensuales a la Fundación "Mascotas Felices" y obtener
-                            un 5% de descuento en mis compras.
-                        </label>
-                    </div>
-                    <!-- Contraseña -->
-                    <div class="mb-3">
-                        <div class="d-flex gap-4">
-                            <label for="InputContraseña" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="InputContraseña" name="InputContraseña">
-                            <button type="submit" class="btn btn-primary">Generar Contraseña</button>
-                        </div>
-                    </div> {% endcomment %}
                     <!-- Botones -->
                     <div class="d-flex gap-4">
                         <button type="submit" class="btn btn-primary" name="action" value="guardar" >Actualizar</button>
-                        <button type="submit" class="btn btn-primary" name="action" value="nuevo">Crear Usuario</button>
-                        <button type="submit" class="btn btn-primary" name="action" value="eliminar">Eliminar</button>
+                        <button type="submit" class="btn btn-success" name="action" value="nuevo">Crear Usuario</button>
+                        <button type="submit" class="btn btn-danger" name="action" value="eliminar">Eliminar</button>
                     </div>       
                 </form>
 

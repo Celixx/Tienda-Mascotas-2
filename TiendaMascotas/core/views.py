@@ -7,10 +7,13 @@ from .tools import eliminar_registro, verificar_eliminar_registro
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.db.models import Count
 
 
 def index(request):
-    return render(request, 'core/index.html')
+    productos = Producto.objects.all().annotate(stock = Count('bodega'))
+    datos = {'productos': productos}
+    return render(request, 'core/index.html', datos)
 
 def misdatos(request):
     perfil = request.user.perfil
@@ -84,8 +87,10 @@ def registro(request):
             return redirect(ingreso)
     return render(request, 'core/registro.html', {'form': RegistrarForm()})
 
-def royalCanin(request):
-    return render(request, 'core/royalCanin.html')
+def producto(request, id):
+    producto = Producto.objects.annotate(stock = Count('bodega')).get(id=id)
+    
+    return render(request, 'core/producto.html', {'producto': producto})
 
 def menuAdmin(request):
     return render(request, 'core/menuAdmin.html')
@@ -299,9 +304,6 @@ def donCuchito(request):
 
 def API_Ropa(request):
     return render(request, 'core/API_Ropa.html')
-
-def index(request):
-    return render(request, 'core/index.html')
 
 def salir(request):
     logout(request)

@@ -13,25 +13,23 @@
   <h2 class="fs-1">Ficha de producto</h2>
   <div class="shadow container d-flex align-items-center justify-content-center">
     <div class=" col-6 text-center p-5">
-      <img src="{% static 'core/images/question_mark.png' %}" class="img-fluid" alt="Descripción de la imagen">
+      <img src="/media/{{ producto.imagen }}" class="img-fluid" alt="Descripción de la imagen">
     </div>
     <div class="col-6 p-2">
       <div>
         <div class="fs-1">
-          Saco de alimento Royal Canin
+          {{ producto.nombre }}
         </div>
         <div class="fw-bold text-success">
-          DISPONIBLE EN BODEGA
+          Stock: {{ producto.stock}}
         </div>
         <div class="precio">
-          $8.000
+          ${{ producto.precio }}
         </div>
         <div class="descripcion">
           Descripción:
-          <br><br>
-          Royal canin, 3kg, sabor a pavo, adulto
-          <br><br>
-          En stock: 3 unidades
+          <br/>
+          {{ producto.descripcion }}
         </div>
         <br>
         <br>

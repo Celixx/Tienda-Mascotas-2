@@ -47,8 +47,8 @@
     <!--------------------------------------Ofertas------------------------------------------>
     <div class="container">
         <div class="row">
-            <div class="col p-5">
-                <a href="{% url 'royalCanin' %}" class="shadow d-flex flex-column align-items-center nav-link">
+            <!-- <div class="col p-5">
+                <a href="{% url 'producto.detalle' '1' %}" class="shadow d-flex flex-column align-items-center nav-link">
                     <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
                     <p class="p-3 text-success"> Disponible</br>
                         <span class="fs-4">$8.000</span></br>
@@ -57,30 +57,24 @@
                         Royal Canin, 3 kg, sabor a pavo, adulto</br>
                         En stock: 3 unidades</br></p>
                 </a>
-            </div>
-            <div class="col p-5">
-                <a href="{% url 'masterCat' %}" class="shadow d-flex flex-column align-items-center nav-link">
-                    <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
-                    <p class="p-3 text-primary"> EN OFERTA</br>
-                        <span class="text-decoration-line-through">$8000</span><span class="fs-4">$6.000 </span><br />
-                        Saco de alimento Master Cat</br>
-                        Descripcion:</br>
-                        Master Cat, 3 kg, sabor a carne, adulto</br>
-                        En stock: 5 unidades</br>
-                    </p>
-                </a>
-            </div>
-            <div class="col p-5">
-                <a href="{% url 'donCuchito' %}" class="shadow d-flex flex-column align-items-center nav-link">
-                    <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
-                    <p class="p-3 text-danger"> Disponible</br>
-                        <span class="fs-4">$3.000</span></br>
-                        Saco de alimento Don Cuchito</br>
-                        Descripcion:</br>
-                        Don Cuchito, 1 kg, sabor pescado, adulto</br>
-                        En stock: 0 unidades</br></p>
-                </a>
-            </div>
+            </div> -->
+            
+            {% for producto in productos %}
+                <div class="col p-5">
+                    <a href="{% url 'producto.detalle' producto.id %}" class="shadow d-flex flex-column align-items-center nav-link">
+
+                        <img src="/media/{{ producto.imagen }}" width="300px" alt="">
+                        <div class="d-flex align-items-start flex-column">
+                            <p>{{ producto.nombre }} </p>
+                            <p class="fs-4">${{ producto.precio }}</p>
+                            <p>{{ producto.descripcion }}</p>
+                            <p>En stock: {{ producto.stock }}</p>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+
         </div>
     </div>
     <div class="container  ">

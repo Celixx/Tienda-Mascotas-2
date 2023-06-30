@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index,misdatos, nosotros,obtener_productos, eliminar_producto_en_bodega, comprasAnteriores, ingreso, admsTienda, registro, royalCanin, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index, salir
+from .views import producto,index,misdatos, nosotros,obtener_productos, eliminar_producto_en_bodega, comprasAnteriores, ingreso, admsTienda, registro, menuAdmin, masterCat, Mantenedor_de_usuarios, Mantenedor_de_Productos, Mantenedor_de_Bodega, Historial_Ventas, Detalle_Boleta, carritoCompras, donCuchito, API_Ropa, index, salir
 
 
 
@@ -17,7 +17,7 @@ urlpatterns = [
     path('ingreso', ingreso, name='ingreso'),
     path('admsTienda', admsTienda, name='admsTienda'),
     path('registro', registro, name='registro'),
-    path('royalCanin', royalCanin, name='royalCanin'),
+    path('producto/<id>', producto, name='producto.detalle'),
     path('menuAdmin', menuAdmin, name='menuAdmin'),
     path('masterCat', masterCat, name='masterCat'),
     path('Mantenedor_de_usuarios', Mantenedor_de_usuarios, name='Mantenedor_de_usuarios'),
@@ -27,7 +27,6 @@ urlpatterns = [
     path('Detalle_Boleta', Detalle_Boleta, name='Detalle_Boleta'),
     path('donCuchito', donCuchito, name='donCuchito'),
     path('API_Ropa', API_Ropa, name='API_Ropa'),
-    path('index', index, name='index'),
     path('salir', salir, name='salir'),
     
 ]
