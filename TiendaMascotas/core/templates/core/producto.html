@@ -20,12 +20,18 @@
         <div class="fs-1">
           {{ producto.nombre }}
         </div>
+        {% if producto.descuento_oferta > 0 %}
+          <p class="fw-bold text-primary">EN OFERTA {{ producto.descuento_oferta }}% DE DESCUENTO</p>
+        {% endif %}
         <div class="fw-bold text-success">
           Stock: {{ producto.stock}}
         </div>
-        <div class="precio">
-          ${{ producto.precio }}
-        </div>
+        {% if producto.descuento_oferta > 0 %}
+          <p class="text-decoration-line-through">${{ producto.precio }}</p>
+          <p class="fw-bold">${{ producto.descuento_oferta }}</p>
+        {% else %}
+          <p class="fw-bold">${{ producto.precio }}</p>
+        {% endif %}
         <div class="descripcion">
           Descripción:
           <br/>

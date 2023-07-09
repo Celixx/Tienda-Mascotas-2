@@ -74,6 +74,14 @@
                     </li>
 
                 {% endif %}
+
+                {% if user.is_authenticated %}
+                    <li>
+                        <p class="nav-link text-light">
+                            {{ user.first_name }}
+                        </p>
+                    </li>
+                {% endif %}
                 
             </ul>
         </nav>

@@ -11,7 +11,7 @@ from django.db.models import Count
 
 
 def index(request):
-    productos = Producto.objects.all().annotate(stock = Count('bodega'))[:3]
+    productos = Producto.objects.all().annotate(stock = Count('bodega'))
     datos = {'productos': productos}
     return render(request, 'core/index.html', datos)
 
@@ -84,6 +84,7 @@ def registro(request):
                 direccion=direccion, 
                 subscrito=subscrito,
                 imagen=request.FILES['imagen'])
+            messages.error(request, 'Cuenta creada con éxito')
             return redirect(ingreso)
     return render(request, 'core/registro.html', {'form': RegistrarForm()})
 
@@ -165,7 +166,13 @@ def Mantenedor_de_usuarios(request):
                 datos = {'form': MantenedorUsuario(), 'usuarios': usuarios, 'perfiles': perfiles}
 
                 return render(request, 'core/Mantenedor_de_usuarios.html', datos)
-    
+        else:
+            usuarios = User.objects.all()
+            perfiles = Perfil.objects.all()
+            datos = {'form': MantenedorUsuario(), 'usuarios': usuarios}
+            messages.error(request, 'El formulario ingresador no es válido')
+            return render(request, 'core/Mantenedor_de_usuarios.html', datos)
+
     usuarios = User.objects.all()
     perfiles = Perfil.objects.all()
 
@@ -230,6 +237,12 @@ def Mantenedor_de_Productos(request):
                     productos = Producto.objects.all()
                     datos = {'form': MantenedorProducto(), 'productos': productos}
                     return render(request, 'core/Mantenedor_de_Productos.html', datos)
+            else:
+                messages.error(request, 'El formulario ingresado no es válido')
+                productos = Producto.objects.all()
+                datos = {'form': MantenedorProducto(), 'productos': productos}
+                return render(request, 'core/Mantenedor_de_Productos.html', datos)
+                
         productos = Producto.objects.all()
         datos = {'form': MantenedorProducto(), 'productos': productos}
         return render(request, 'core/Mantenedor_de_Productos.html', datos)

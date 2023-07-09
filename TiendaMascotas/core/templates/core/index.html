@@ -46,27 +46,28 @@
     <!----------------------------------------------------------------------------------------------->
     <!--------------------------------------Ofertas------------------------------------------>
     <div class="container">
-        <div class="row">
-            <!-- <div class="col p-5">
-                <a href="{% url 'producto.detalle' '1' %}" class="shadow d-flex flex-column align-items-center nav-link">
-                    <img src="{% static 'core/images/question_mark.png' %}" alt="Example Image" width="300px">
-                    <p class="p-3 text-success"> Disponible</br>
-                        <span class="fs-4">$8.000</span></br>
-                        Saco de alimento Royal Canin</br>
-                        Descripcion:</br>
-                        Royal Canin, 3 kg, sabor a pavo, adulto</br>
-                        En stock: 3 unidades</br></p>
-                </a>
-            </div> -->
-            
+        <div class="row">           
             {% for producto in productos %}
-                <div class="col p-5">
-                    <a href="{% url 'producto.detalle' producto.id %}" class="shadow d-flex flex-column align-items-center nav-link">
-
-                        <img src="/media/{{ producto.imagen }}" width="300px" alt="">
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <a href="{% url 'producto.detalle' producto.id %}" class="p-2 shadow d-flex flex-column align-items-center nav-link">
+                        <img src="/media/{{ producto.imagen }}" width="175px" alt="">
                         <div class="d-flex align-items-start flex-column">
+                            {% if producto.stock == 0 %}
+                                <p style="color: red;"> AGOTADO</p>
+                            {% endif %}
+                            {% if producto.descuento_oferta == 0 %}
+                                <p style="color: green;"> DISPONIBLE</p>
+                            {% endif %}
+                            {% if producto.descuento_oferta > 0 and producto.stock > 0 %}
+                                <p style="color: blue;">EN OFERTA</p>
+                            {% endif %}
                             <p>{{ producto.nombre }} </p>
+                            {% if producto.descuento_oferta > 0 and producto.stock > 0 %}
+                            <span class="text-decoration-line-through">${{ producto.precio }}</span>
+                            <span class="fs-4">${{ producto.descuento_oferta }}</span>
+                            {% else %}
                             <p class="fs-4">${{ producto.precio }}</p>
+                            {% endif %}
                             <p>{{ producto.descripcion }}</p>
                             <p>En stock: {{ producto.stock }}</p>
                         </div>

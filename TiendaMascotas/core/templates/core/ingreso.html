@@ -7,6 +7,7 @@
         .error {
             font-weight: bold;
             font-size: 14px;
+            color: red;
         }
     </style>
 {% endblock stylesheet %}
@@ -19,19 +20,26 @@
                     <h1>Ingreso a la tienda</h1>
                 </div>
             
-            <form method="POST" id="form">
+                <form method="POST" id="form">
 
-                {% csrf_token %} 
-                {{ form.as_p }} 
-                    <div class="d-grid gap-4 col-5 mx-auto p-2">
-                        <button class="btn btn-primary" type="submit">Ingresar</button>
-                    </div>
-                    <div class="container-fluid d-flex justify-content-around p-2">
-                        <a href="{% url 'registro' %}" class=" ">Registrarse</a>
-                        <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
-                    </div>
-                        
+                    {% csrf_token %} 
+                    {{ form.as_p }} 
+                        <div class="d-grid gap-4 col-5 mx-auto p-2">
+                            <button class="btn btn-primary" type="submit">Ingresar</button>
+                        </div>
+                        <div class="container-fluid d-flex justify-content-around p-2">
+                            <a href="{% url 'registro' %}" class=" ">Registrarse</a>
+                            <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
+                        </div>
 
+                        {% if messages %}
+                          <div class="alert alert-light alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                        {% endif %}    
+                            
+                </form>
             </div>
         </div>
     </div>

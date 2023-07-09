@@ -57,7 +57,7 @@ class MisDatosForm(UserCreationForm):
         fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
     
 class MantenedorProducto(Form):
-    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID", required=False, )
+    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID(Poblar solamente si se desea eliminar o actualizar)", required=False, )
     categoria_choices = Categoria.objects.all().values_list('id', 'nombre')
     categoria = forms.ChoiceField(choices=categoria_choices, widget=forms.Select(attrs={'class': 'form_control'}), label="Categoría", required=False)
     nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre Producto", required=False)
@@ -77,7 +77,7 @@ class MantenedorUsuario(UserCreationForm):
         ('cliente', 'Cliente'),
         ('administrador', 'Administrador'),
     ]
-    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID", required=False, )
+    id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID(Poblar solamente si se desea eliminar)", required=False, )
     rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=False)
     rol = forms.ChoiceField(choices=roles_choices, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}), label='Tipo de usuario', required=False)
     username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=False)
