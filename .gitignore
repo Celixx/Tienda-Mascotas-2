@@ -6,7 +6,6 @@ TiendaMascotas/apirest/__pycache__/
 TiendaMascotas/core/__pycache__/
 TiendaMascotas/migrations/__pycache__/
 TiendaMascotas/apirest/migrations/__pycache__/
-TiendaMascotas/media
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
