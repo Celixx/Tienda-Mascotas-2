@@ -10,6 +10,15 @@
     
     <!------------------------------------------------------------------------------------->
     <!-------------------------------------CARRUSEL---------------------------------------->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-light alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}    
+                            
     <div class="row">
         <div id="carouselExampleIndicators" class="carousel slide">
             <div class="carousel-indicators">
@@ -55,7 +64,7 @@
                             {% if producto.stock == 0 %}
                                 <p style="color: red;"> AGOTADO</p>
                             {% endif %}
-                            {% if producto.descuento_oferta == 0 %}
+                            {% if producto.descuento_oferta == 0 and producto.stock > 0 %}
                                 <p style="color: green;"> DISPONIBLE</p>
                             {% endif %}
                             {% if producto.descuento_oferta > 0 and producto.stock > 0 %}

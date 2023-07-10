@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm
 from django.contrib.auth import login, logout, authenticate
 from .models import Perfil, Categoria, Producto, Bodega, DetalleBoleta, Carrito
 from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm
@@ -32,6 +31,10 @@ def misdatos(request):
             perfil.imagen = request.FILES['imagen']
             perfil.save()
             user.save()
+            messages.error(request, 'Cambios actualizados con éxito, porfavor vuelva a iniciar sesión')
+            return redirect(index)
+        else:
+            messages.error(request, 'Error al actualizar datos')
             return render(request, 'core/misdatos.html', {'form': MisDatosForm(instance=perfil)})
     return render(request, 'core/misdatos.html', {'form': MisDatosForm(instance=perfil)})
 
